@@ -1,0 +1,421 @@
+/*************************
+varaibles
+*************************/
+$blue: #4831d4;
+$green: #ccf381;
+$lightgray: #f7f7f7;
+$gray: #333;
+$white: #fff;
+$red: crimson;
+$transition: 0.3s ease;
+$font: 16px;
+$fontFamily: 'Roboto', sans-serif;
+$padding: 100px 0;
+$boxShadow: 0 0 10px #b7b6b6;
+$textShadow: 0 0 2px #333;
+
+/*************************
+basic styles
+*************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: $fontFamily;
+    font-size: $font;
+    color: $gray;
+    line-height: 1.6;
+}
+h1, h2, h3, h4, h5 {
+    font-weight: 900;
+}
+h1{
+    text-transform: uppercase;
+    font-weight: 400;
+    span{
+        text-transform: lowercase;
+        font-weight: 900;
+        font-style: italic;
+        color: $green;
+        text-shadow:$textShadow; 
+    }
+}
+h2{
+    font-size: 45px;
+}
+h3{
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+.container{
+    width: 95%;
+    margin: auto;
+}
+a{
+    text-decoration: none;
+    color: $gray;
+    transition: $transition;
+    &:hover{
+          color: $red;
+         }
+}
+ul{
+    list-style: none;
+}
+img{
+    width: 100%;
+    display: block;
+}
+hr{
+    border: none;
+    height: 5px;
+    background-color: $green;
+    width: 100%;
+    position: absolute;
+    top: 0; 
+}
+.dugme{
+    margin-top: 15px;
+    border: none;
+    padding: 20px 60px;
+    text-transform: uppercase;
+    background-color: $green;
+    cursor: pointer;
+    transition: $transition;
+    &:hover{
+        background-color: $red;
+        color: $white;
+    }
+}
+/***************
+Mixini
+****************/
+@mixin flex($justify:space-between,$align:center,$direction:row){
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+@mixin responsive($uredjaj){
+    @if $uredjaj == mobilni{
+        @media screen and (max-width:576px){
+            @content;
+        }
+    }
+    @if $uredjaj == tablet{
+        @media screen and (max-width:768px){
+            @content;
+        }
+    }
+}
+
+/***************
+Header section
+****************/
+header{
+    .podaci{
+        background-color: $lightgray;
+        .container{
+            @include flex();
+        }
+    }
+    .navigacija{
+        padding: 20px 0;
+        @include flex();
+        div{
+            flex: 0 0 33%;
+            @include responsive(tablet){
+            flex: 0 0 28%;
+            } 
+        }
+        .nav{
+            ul{
+                @include flex();
+                li{
+                    flex: 0 0 33%;
+                    @include responsive(tablet){
+                        flex: 0 0 20%;
+                    }
+                    
+                }
+
+            }   
+        }
+        .ikonice{
+            @include flex($justify:flex-end);
+            i{
+                margin-left: 10px;
+                font-size: 20px;
+            }
+        }
+    }
+}
+/***************
+Hero section
+****************/
+.hero{
+    position: relative;
+    background-image: url(img/header.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    @include flex();
+    line-height: 1.2;
+    article{
+        @include responsive(mobilni){
+         text-align: center;
+
+        }
+        h4{
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+        h2{
+            text-transform: capitalize;
+            color: $white;
+            span{
+                color: $green;
+            }
+        }
+    }
+}
+/***************
+Product section
+****************/
+.product{
+    padding: $padding;
+    h2{
+        text-align: center;
+        &::after{
+            content: '';
+            display: block;
+            height: 2px;
+            background-color: $green;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+    }
+    .productInfo{
+        @include flex();
+        @include responsive(tablet){
+         flex-direction: column;   
+        }
+        padding: 50px 100px;
+        article{
+            flex: 0 0 31%;
+            box-shadow: $boxShadow;
+        }
+    }
+    .productText{
+        margin-left: 15px;
+        P{
+            margin-bottom: 20px;
+            span{
+                color: $blue;
+                text-decoration: line-through;
+                padding-right: 20px;
+
+            }
+        }
+    }
+}
+/***************
+Footer section
+****************/
+footer{
+    padding-top: 100px;
+    background-color: $blue;
+    .footerInfo{
+        @include flex();
+        @include responsive(tablet){
+         flex-direction: column; 
+         text-align: center;  
+        }
+        padding: 0 100px;
+        color: $white;
+        div{
+            flex: 0 0 33%;
+            a{
+                color: $white;
+                transition: $transition;
+                &:hover{
+                    color: $red;
+                }
+            }
+            input{
+                padding: 15px 10px;
+            }
+            .dugme{
+                padding: 10px 20px;
+                text-transform: none;
+                margin-left: -30px;
+            }
+        }
+    }
+    .footerDesigne{
+        background-color: $green;
+        margin-top: 20px;
+        .container{
+            @include flex();
+        }
+        i{
+            padding-right: 20px;
+        }
+    }
+}
+/***************
+Hero Shop section
+****************/
+.heroShop{
+    position: relative;
+    .textShop{
+        padding: 50px 0;
+        background-color: $lightgray;
+        text-align: center;
+        margin-bottom: 100px;
+    }
+    .cardShop{
+        margin-bottom: 100px;
+        @include flex();
+        @include responsive(tablet){
+            flex-direction: column;
+        }
+        padding: 0 100px;
+        div{
+            flex: 0 0 24%;
+            text-align: center;
+            border: 1px solid $gray;
+            padding: 30px 0;
+            box-shadow: $boxShadow;
+            @include responsive(tablet){
+            margin-bottom: 30px;
+            padding: 30px;
+            }
+            i{
+                font-size: 30px;
+                color: $green;
+                text-shadow:$textShadow; 
+            }
+        }
+    }
+}
+/***************
+Products section
+****************/
+.discount{
+    position: relative;
+    background-image: url(img/shop.jpg);
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    @include flex($justify:center);
+
+        div{
+            margin-left:30%;
+            @include responsive(tablet){
+                margin-left: 50%;
+                    }
+            h4{
+                font-size: 20px;
+                text-transform: uppercase;
+                @include responsive(tablet){
+                    font-size: 15px;
+           
+                    }
+            }
+            h2{
+                text-transform: uppercase;
+                font-size: 100px;
+                @include responsive(tablet){
+                font-size: 45px;
+                    }
+                span{
+                    color: $green;
+                }
+            }
+            p{
+                margin-top: 20px;
+            }
+    
+        }
+
+}
+/***************
+Product info section
+****************/
+.productInfo{
+    position: relative;
+    .textProduct{
+        text-align: center;
+        padding: 50px 0;
+        margin-bottom: 100px;
+        background-color: $lightgray;
+    }
+    .productInformation{
+        @include flex();
+        margin-bottom: 100px;
+        @include responsive(tablet){
+         flex-direction: column;
+         text-align: center;
+           
+        }
+        padding: 0 100px;
+        div{
+            flex: 0 0 49%;
+        }
+    }
+    .productDescrip{
+        h3{
+            font-size: 50px;
+        }
+        h4{
+            color: $green;
+            text-shadow: $textShadow;
+            font-size: 30px;
+        }
+        p{
+            padding: 10px 0;
+            width: 80%;
+            @include responsive(tablet){
+            width: 100%;
+            }
+        }
+        span{
+            color: $blue;
+        }
+        hr{
+            position: relative;
+            background: $gray;
+            height: 1px;
+            margin: 20px 0;
+        }
+        i{
+            border: 1px solid $gray;
+            padding: 15px;
+            margin: 0 10px;
+            &:hover{
+                background-color: $red;
+                color: $white;
+                cursor: pointer;
+            }
+        }
+        input{
+            width: 40px;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {  
+             opacity: 1;
+        }
+        .dugme{
+            @include responsive(tablet){
+             padding: 20px 30px;   
+            }
+        }
+    }
+}
